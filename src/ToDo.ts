@@ -1,12 +1,12 @@
 type ToDo = {
-    
+
+    id?: number
+
     done: boolean
     deadline: string // YY/MM/DD HH:MM
 
     title: string
     description: string
-
-
 }
 
 const sortTasks = (task1: ToDo, task2: ToDo) => {
@@ -35,12 +35,15 @@ const sortTasks = (task1: ToDo, task2: ToDo) => {
 }
 
 function printTask(task: ToDo): void{
+
+    console.log(`ID: ${task.id}`)
     console.log(task.title)
     console.log(task.description)
-
+    
     let status: string = (task.done ? 'Completed' : 'Not Completed')
     console.log(`Status: ${status}`)
     console.log(`Deadline: ${task.deadline}`)
+    console.log('--------------------------------------------')
 }
 
 

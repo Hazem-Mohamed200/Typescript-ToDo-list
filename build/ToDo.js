@@ -22,10 +22,12 @@ const sortTasks = (task1, task2) => {
 };
 exports.sortTasks = sortTasks;
 function printTask(task) {
+    console.log(`ID: ${task.id}`);
     console.log(task.title);
     console.log(task.description);
     let status = (task.done ? 'Completed' : 'Not Completed');
     console.log(`Status: ${status}`);
     console.log(`Deadline: ${task.deadline}`);
+    console.log('--------------------------------------------');
 }
 exports.printTask = printTask;

@@ -4,18 +4,25 @@ class ToDoList {
 
     public title: string
     private toDos: ToDo[]
-    private currentlySorted: boolean = true
+    private fixed: boolean = true
 
     constructor (toDos: ToDo[], title: string){
         this.toDos = toDos
         this.title = title
+        this.fixList()
     }
 
-    addTask(title: string, description: string, deadline: string)
+    private fixList(){
+        this.toDos.sort(sortTasks)
+        for(let i = 0; i < this.toDos.length; i++){
+            this.toDos[i].id = i + 1
+        }
+    }
+
+    addTask(task: ToDo)
     {
-        this.currentlySorted = false
-        const newTask: ToDo = {'title': title, 'description': description, 'deadline': deadline, done: false}
-        this.toDos.push(newTask)
+        this.fixed = false
+        this.toDos.push(task)
     }
 
     deleteTask(index: number)
@@ -25,17 +32,21 @@ class ToDoList {
 
     completeTask(index: number)
     {
+        this.fixed = false
         this.toDos[index - 1].done = true
     }
 
     printTasks()
     {
-        if(!this.currentlySorted)
-            this.toDos.sort(sortTasks)
+        if(!this.fixed)
+            this.fixList()
         
-        this.currentlySorted = true
+        this.fixed = true
         for(let i = 0; i < this.toDos.length; i++)
             printTask(this.toDos[i])
+        
+        console.log()
+        console.log()
     }
 }
 
