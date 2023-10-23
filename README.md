@@ -4,11 +4,11 @@ This project is a simple to-do list application built with TypeScript. It allows
 
 ## Features
 
-   * Create new tasks
-   * Mark tasks as completed
+   * Add tasks
    * Delete tasks
-   * Filter tasks based on their completion status
    * Sort tasks by deadline
+   * Mark tasks as completed
+   * Filter tasks based on their completion status
  
  ## Installation
    * Clone the repository using the git clone command
