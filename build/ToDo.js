@@ -1,6 +1,3 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.sortTasks = exports.printTask = void 0;
 const sortTasks = (task1, task2) => {
     // Sorts the tasks by completion first, if there is a tie sorts the tasks by deadline
     const task1Status = task1.done;
@@ -20,7 +17,6 @@ const sortTasks = (task1, task2) => {
     else
         return -1;
 };
-exports.sortTasks = sortTasks;
 function printTask(task) {
     console.log(`ID: ${task.id}`);
     console.log(task.title);
@@ -30,4 +26,4 @@ function printTask(task) {
     console.log(`Deadline: ${task.deadline}`);
     console.log('--------------------------------------------');
 }
-exports.printTask = printTask;
+export { printTask, sortTasks };
