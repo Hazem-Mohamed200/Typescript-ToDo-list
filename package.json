@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -19,10 +18,6 @@
   },
   "homepage": "https://github.com/Hazem-Mohamed200/Basic-To-Do-list#readme",
   "dependencies": {
-    "readline": "^1.3.0",
     "typescript": "^4.9.5"
-  },
-  "devDependencies": {
-    "@types/node": "^20.8.7"
   }
 }

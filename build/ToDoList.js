@@ -1,4 +1,7 @@
-import { printTask, sortTasks } from "./ToDo";
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.ToDoList = void 0;
+const ToDo_1 = require("./ToDo");
 class ToDoList {
     constructor(toDos, title) {
         this.fixed = true;
@@ -7,7 +10,7 @@ class ToDoList {
         this.fixList();
     }
     fixList() {
-        this.toDos.sort(sortTasks);
+        this.toDos.sort(ToDo_1.sortTasks);
         for (let i = 0; i < this.toDos.length; i++) {
             this.toDos[i].id = i + 1;
         }
@@ -28,9 +31,9 @@ class ToDoList {
             this.fixList();
         this.fixed = true;
         for (let i = 0; i < this.toDos.length; i++)
-            printTask(this.toDos[i]);
+            (0, ToDo_1.printTask)(this.toDos[i]);
         console.log();
         console.log();
     }
 }
-export { ToDoList };
+exports.ToDoList = ToDoList;
