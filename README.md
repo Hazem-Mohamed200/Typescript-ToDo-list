@@ -1,6 +1,6 @@
 # TypeScript To-Do List
 
-This project is a simple to-do list application built with TypeScript. It allows users to create tasks, mark them as completed, and delete tasks. The application uses modern web technologies such as HTML, CSS, and TypeScript.
+This project is a simple to-do list application built with TypeScript. It allows users to create tasks, mark them as completed, and delete tasks. The application uses CLI, and TypeScript.
 
 ## Features
 
@@ -8,6 +8,7 @@ This project is a simple to-do list application built with TypeScript. It allows
    * Delete tasks
    * Sort tasks by deadline
    * Mark tasks as completed
+   * Add and remove optional tags from tasks
    * Filter tasks based on their completion status
  
  ## Installation
