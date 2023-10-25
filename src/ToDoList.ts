@@ -32,7 +32,28 @@ class ToDoList {
 
     changeDeadline(index: number, newDeadline: string)
     {
-        this.toDos[index].deadline = newDeadline
+        this.toDos[index - 1].deadline = newDeadline
+    }
+
+    addTag(index: number, tag: string)
+    {
+        if(this.toDos[index - 1].tags === undefined)
+            this.toDos[index - 1].tags = []
+
+        this.toDos[index - 1].tags?.push(tag)
+    }
+
+    deleteTag(index: number, tag: string)
+    {
+        if(this.toDos[index - 1].tags === undefined)
+            return
+
+        let tagIndex = this.toDos[index - 1].tags?.findIndex((usedTag: string) => {return usedTag == tag})
+
+        if(tagIndex == -1)
+            return
+
+        this.toDos[index - 1].tags?.splice((tagIndex === undefined ? 0 : tagIndex), 1)
     }
 
     completeTask(index: number)

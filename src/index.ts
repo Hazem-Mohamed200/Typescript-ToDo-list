@@ -15,14 +15,12 @@ const tasks: ToDo[] = [task1, task2, task3, task4, task5]
 const toDoList: ToDoList = new ToDoList(tasks, 'ToDoList A')
 
 
-toDoList.printTasks()
-toDoList.completeTask(4)
-toDoList.printTasks()
-toDoList.deleteTask(5)
+
+toDoList.addTag(1, "cool task")
+toDoList.addTag(1, "crazy task")
+
 toDoList.printTasks()
 
-
-const newTask: ToDo = {'title': 'TASK F', 'description': 'This is the new task', 'deadline': '0001/01/01', 'done': false}
-toDoList.addTask(newTask)
+toDoList.deleteTag(1, "cool task")
 
 toDoList.printTasks()

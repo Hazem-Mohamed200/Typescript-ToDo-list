@@ -22,6 +22,24 @@ class ToDoList {
     deleteTask(index) {
         this.toDos.splice(index - 1, 1);
     }
+    changeDeadline(index, newDeadline) {
+        this.toDos[index - 1].deadline = newDeadline;
+    }
+    addTag(index, tag) {
+        var _a;
+        if (this.toDos[index - 1].tags === undefined)
+            this.toDos[index - 1].tags = [];
+        (_a = this.toDos[index - 1].tags) === null || _a === void 0 ? void 0 : _a.push(tag);
+    }
+    deleteTag(index, tag) {
+        var _a, _b;
+        if (this.toDos[index - 1].tags === undefined)
+            return;
+        let tagIndex = (_a = this.toDos[index - 1].tags) === null || _a === void 0 ? void 0 : _a.findIndex((usedTag) => { return usedTag == tag; });
+        if (tagIndex == -1)
+            return;
+        (_b = this.toDos[index - 1].tags) === null || _b === void 0 ? void 0 : _b.splice((tagIndex === undefined ? 0 : tagIndex), 1);
+    }
     completeTask(index) {
         this.fixed = false;
         this.toDos[index - 1].done = true;

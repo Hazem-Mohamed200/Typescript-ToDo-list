@@ -2,6 +2,8 @@ type ToDo = {
 
     id?: number
 
+    tags?: string[]
+
     done: boolean
     deadline: string // YY/MM/DD HH:MM
 
@@ -39,6 +41,19 @@ function printTask(task: ToDo): void{
     console.log(`ID: ${task.id}`)
     console.log(task.title)
     console.log(task.description)
+
+    if(task.tags?.length !== undefined)
+    {
+        let tagsString: string = ""
+        for(let i = 0; i < task.tags.length; i++)
+        {
+            tagsString += task.tags[i]
+
+            if(i != task.tags.length - 1)
+                tagsString += ", "
+        }
+        console.log(`Tags: ${tagsString}`)
+    }
     
     let status: string = (task.done ? 'Completed' : 'Not Completed')
     console.log(`Status: ${status}`)

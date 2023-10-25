@@ -8,11 +8,8 @@ const task4 = { 'title': 'TASK D', 'description': 'This is task D', 'deadline': 
 const task5 = { 'title': 'TASK E', 'description': 'This is task E', 'deadline': '2023/01/01', 'done': false };
 const tasks = [task1, task2, task3, task4, task5];
 const toDoList = new ToDoList_1.ToDoList(tasks, 'ToDoList A');
+toDoList.addTag(1, "cool task");
+toDoList.addTag(1, "crazy task");
 toDoList.printTasks();
-toDoList.completeTask(4);
-toDoList.printTasks();
-toDoList.deleteTask(5);
-toDoList.printTasks();
-const newTask = { 'title': 'TASK F', 'description': 'This is the new task', 'deadline': '0001/01/01', 'done': false };
-toDoList.addTask(newTask);
+toDoList.deleteTag(1, "cool task");
 toDoList.printTasks();

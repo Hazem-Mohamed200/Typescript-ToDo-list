@@ -22,9 +22,19 @@ const sortTasks = (task1, task2) => {
 };
 exports.sortTasks = sortTasks;
 function printTask(task) {
+    var _a;
     console.log(`ID: ${task.id}`);
     console.log(task.title);
     console.log(task.description);
+    if (((_a = task.tags) === null || _a === void 0 ? void 0 : _a.length) !== undefined) {
+        let tagsString = "";
+        for (let i = 0; i < task.tags.length; i++) {
+            tagsString += task.tags[i];
+            if (i != task.tags.length - 1)
+                tagsString += ", ";
+        }
+        console.log(`Tags: ${tagsString}`);
+    }
     let status = (task.done ? 'Completed' : 'Not Completed');
     console.log(`Status: ${status}`);
     console.log(`Deadline: ${task.deadline}`);
