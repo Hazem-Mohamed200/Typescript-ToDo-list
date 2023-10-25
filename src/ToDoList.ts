@@ -30,6 +30,11 @@ class ToDoList {
         this.toDos.splice(index - 1, 1)
     }
 
+    changeDeadline(index: number, newDeadline: string)
+    {
+        this.toDos[index].deadline = newDeadline
+    }
+
     completeTask(index: number)
     {
         this.fixed = false
