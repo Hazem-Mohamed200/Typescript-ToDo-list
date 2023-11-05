@@ -1,16 +1,14 @@
 import express from "express"
+import Router  from "./routes/toDoRoutes"
 
 
 const port = 3000
-const app = express()
+const app = express()   
 app.use(express.json())
 
 
-app.get('/', (request, response)=>{
-    
-    response.send('<strong> Express Test </strong>')
-})
+app.use('/todo', Router)
 
 app.listen(port, ()=>{
-    console.log(`Listening on port ${port}`)
+    console.log(`Alive on http://localhost:${port}/`)
 })

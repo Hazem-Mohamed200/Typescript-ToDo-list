@@ -1,12 +1,12 @@
 type ToDo = {
-
+    
     id?: number
-
+    
     tags?: string[]
-
+    
     done: boolean
     deadline: string // YY/MM/DD HH:MM
-
+    
     title: string
     description: string
 }
