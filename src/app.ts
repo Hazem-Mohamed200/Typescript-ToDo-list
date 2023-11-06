@@ -8,8 +8,8 @@ const app = express()
 app.use(express.json())
 
 
-app.use('/todo', toDoRoutes);
-app.use('/users', userRoutes);
+app.use('/todo', toDoRoutes)
+app.use('/users', userRoutes)
 
 
 app.listen(port, ()=>{

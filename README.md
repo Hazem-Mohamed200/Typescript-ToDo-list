@@ -1,6 +1,6 @@
 # TypeScript To-Do List
 
-This project is a simple to-do list application built with TypeScript. It allows users to create tasks, mark them as completed, and delete tasks. The application uses CLI, and TypeScript.
+This project is a simple to-do list application built with TypeScript and NodeJS. It allows users to create tasks, mark them as completed, and delete tasks and add multiple users each with their own ToDo Lists and tasks. The application uses CLI, TypeScript, and NodeJS.
 
 ## Features
 
@@ -10,6 +10,7 @@ This project is a simple to-do list application built with TypeScript. It allows
    * Mark tasks as completed
    * Add and remove optional tags from tasks
    * Filter tasks based on their completion status
+   * Create users
  
  ## Installation
    * Clone the repository using the git clone command
