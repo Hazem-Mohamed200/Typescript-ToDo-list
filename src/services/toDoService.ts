@@ -1,6 +1,7 @@
 import { ToDo } from "../types/ToDo"
 const getAllToDos = ()=>{
     const task:ToDo = {
+        userID: 0,
         done: false,
         deadline: '10/10/2002',
         title: 'test task',
