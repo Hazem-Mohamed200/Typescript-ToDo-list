@@ -1,5 +1,7 @@
 import { ToDo, printTask, sortTasks } from "./ToDo";
 
+const allToDos: ToDo[] = []
+
 class ToDoList {
 
     public title: string
@@ -23,6 +25,9 @@ class ToDoList {
     {
         this.fixed = false
         this.toDos.push(task)
+
+
+        allToDos.push(task)
     }
 
     deleteTask(index: number)
@@ -77,4 +82,4 @@ class ToDoList {
 }
 
 
-export { ToDoList }
+export { ToDoList, allToDos }

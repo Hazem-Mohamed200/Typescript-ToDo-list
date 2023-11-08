@@ -1,15 +1,21 @@
 import { ToDo } from "../types/ToDo"
-const getAllToDos = ()=>{
-    const task:ToDo = {
-        userID: 0,
-        done: false,
-        deadline: '10/10/2002',
-        title: 'test task',
-        description: 'test test test'
-    }
+import { User } from "../types/User"
+import { allToDos } from "../types/ToDoList"
 
-    return task
+
+
+const getAllToDos = async()=>{
+    return allToDos
+}
+
+const createToDo = async(user:User, task:ToDo) => {
+    user.toDoList.addTask(task)
+    user.toDos.push(task)
 }
 
 
-export { getAllToDos }
+const getUserToDos = async(user:User) => {
+    return user.toDos
+}
+
+export { getAllToDos, getUserToDos, createToDo }

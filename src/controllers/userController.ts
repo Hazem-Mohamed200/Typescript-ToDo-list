@@ -40,15 +40,18 @@ const getUserWithIDController = (req: Request, res: Response) => {
         res.status(200).json({Message:"Success", Data:user})
 }
 
-const createUserController = (req: Request, res: Response) => {
+const createUserController = async(req: Request, res: Response) => {
     const {id, age, name, phoneNo} = req.body
 
     if(validateUser(id, age, name, phoneNo) == false)
         res.status(400).json({Message: "Bad parameters"})
     else
     {
-        createUser(id, age, name, phoneNo)
-        res.status(200).json({Message: 'User created'})
+        const userCreated: boolean = await createUser(id, age, name, phoneNo)
+        if(userCreated)
+            res.status(200).json({Message: 'User created'})
+        else
+            res.status(400).json({Message: 'User ID already in use'})
     }
 }
 

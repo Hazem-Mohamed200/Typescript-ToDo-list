@@ -8,8 +8,8 @@ type User = {
     name: string
     phoneNo: string
 
-    toDos?: ToDo[]
-    toDoList?: ToDoList
+    toDos: ToDo[]
+    toDoList: ToDoList
 }
 
 
