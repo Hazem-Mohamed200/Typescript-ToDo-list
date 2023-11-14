@@ -1,5 +1,5 @@
 import { Request, Response } from "express"
-import { getAllUsers, getUserByID, createUser } from "../services/userService"
+import { getAllUsers, getUserByID, createUser, deleteUser } from "../services/userService"
 
 
 const validateNumber = (reqParam: string) =>{
@@ -27,12 +27,12 @@ const getUsersController = (req: Request, res: Response) => {
     res.status(200).json({Message:"Success", Data:users})
 }
 
-const getUserWithIDController = (req: Request, res: Response) => {
+const getUserWithIDController = async(req: Request, res: Response) => {
 
     if(validateNumber(req.params.id) == false)
         res.status(400).json({Message: "Bad parameters"})
 
-    const user = getUserByID(parseInt(req.params.id))
+    const user = await getUserByID(parseInt(req.params.id))
 
     if(user === null)
         res.status(404).json({Message: "Failed, User not found"})
@@ -55,5 +55,16 @@ const createUserController = async(req: Request, res: Response) => {
     }
 }
 
+const deleteUserController = async(req: Request, res: Response) => {
+    if(validateNumber(req.params.id) == false)
+        res.status(400).json({Message: "Bad parameters"})
 
-export { getUsersController, getUserWithIDController, createUserController }
+    const flag = await deleteUser(parseInt(req.params.id))
+
+    if(flag == false)
+        res.status(404).json({Message: "Failed, User not found"})
+    else
+        res.status(200).json({Message:`Success, User:${req.params.id} deleted.`})
+}
+
+export { getUsersController, getUserWithIDController, createUserController, deleteUserController }

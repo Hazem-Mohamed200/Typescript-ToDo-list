@@ -1,8 +1,7 @@
 import { ToDoList } from "../types/ToDoList";
 import { User } from "../types/User";
 
-let users:User[] = []
-let usersMap:Map<number, number> = new Map<number, number>
+let users:Map<number, User> = new Map<number, User>
 
 const createUser = async(id: number, age: number, name:string, phoneNo: string) => {
     
@@ -15,26 +14,36 @@ const createUser = async(id: number, age: number, name:string, phoneNo: string) 
         toDoList: new ToDoList([], 'ToDo List')
     }
 
-    if(usersMap.has(newUser.id))
+    if(users.has(newUser.id))
         return false
     
-    usersMap.set(newUser.id, users.length)
-    users.push(newUser)
+    users.set(newUser.id, newUser)
     return true
 }
 
 const getAllUsers = () => {
-    return users
+    
+    const allUsers: User[] = []
+    users.forEach((value: User)=>{allUsers.push(value)})
+    return allUsers
 }
 
 const getUserByID  = async(id:number) => {
     
-    if(!usersMap.has(id))
+    if(!users.has(id))
         return null;
     else
-        return users[usersMap.get(id)!]
+        return users.get(id)!
+}
+
+const deleteUser = async(id: number) => {
+    if(!users.has(id))
+        return false;
+
+    users.delete(id)
+    
+    return true
 }
 
 
-
-export { getAllUsers, getUserByID, createUser }
+export { getAllUsers, getUserByID, createUser, deleteUser }
