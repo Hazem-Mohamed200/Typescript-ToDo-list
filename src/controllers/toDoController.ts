@@ -37,7 +37,7 @@ const createToDoController = async (req: Request, res: Response) => {
     }
 
     await createToDo(user!, task)
-    res.status(200).json({Message: `ToDo added to User: ${user!.id}`})
+    res.status(200).json({Message: `ToDo added to User: ${user.id}`})
 }
 
 

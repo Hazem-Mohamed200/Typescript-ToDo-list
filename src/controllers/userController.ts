@@ -41,13 +41,13 @@ const getUserWithIDController = async(req: Request, res: Response) => {
 }
 
 const createUserController = async(req: Request, res: Response) => {
-    const {id, age, name, phoneNo} = req.body
+    const {id, age, name, phoneNo, email} = req.body
 
     if(validateUser(id, age, name, phoneNo) == false)
         res.status(400).json({Message: "Bad parameters"})
     else
     {
-        const userCreated: boolean = await createUser(id, age, name, phoneNo)
+        const userCreated: boolean = await createUser(id, age, name, phoneNo, email)
         if(userCreated)
             res.status(200).json({Message: 'User created'})
         else
