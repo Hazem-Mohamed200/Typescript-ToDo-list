@@ -1,5 +1,4 @@
 import { todo } from 'node:test'
-import { getUserToDos } from '../services/toDoService'
 import { createToDoController, getToDosController, getUserToDosController } from '../controllers/toDoController'
 
 const Router = require('express').Router

@@ -1,28 +1,32 @@
-import { User } from "../types/User";
+import mongodb from "mongodb"
+import ObjectId from "mongodb"
+import { User } from "../types/User"
+import userModel from "../models/userModel"
 
 
-const createUser = async(id: number, age: number, name:string, phoneNo: string, email: string) => {
-    return true
-}
-
-const getAllUsers = () => {
-    
-}
-
-const getUserByID  = async(id:number) => {
-    const tmpUser:User ={
-            id:1,
-            name:"dsfdsf",
-            age:1,
-            email:"sdfsdf",
-            phoneNo:"sdfsdf",
-            toDos: []
+const createUser = async(age: number, name:string, phoneNo: string, email: string) => {
+    try{
+        const user = await userModel.create({age, name, phoneNo, email});
+        return user
     }
-
-    return tmpUser
+    catch(err){
+        console.log("Error: " + err)
+        return null;
+    }
 }
 
-const deleteUser = async(id: number) => {
+const getAllUsers = async() => {
+    const users = await userModel.find({})
+    return users
+}
+
+const getUserByID  = async(id: string) => {
+    const user = userModel.findById(id)
+    return user
+}
+
+const deleteUser = async(id: mongodb.ObjectId) => {
+    const flag = await userModel.deleteOne({id: id})
     return true
 }
 

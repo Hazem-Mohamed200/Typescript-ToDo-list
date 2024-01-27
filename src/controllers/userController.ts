@@ -1,3 +1,4 @@
+import mongodb from "mongodb"
 import { Request, Response } from "express"
 import { getAllUsers, getUserByID, createUser, deleteUser } from "../services/userService"
 
@@ -14,25 +15,22 @@ const validateNumber = (reqParam: string) =>{
     return true;
 }
 
-const validateUser = (id: any, age: any, name: any, phoneNo: any) => {
+const validateUser = (age: any, name: any, phoneNo: any) => {
 
-    if(name == undefined || !validateNumber(id) || !validateNumber(age) || phoneNo == undefined)
+    if(name == undefined || !validateNumber(age) || phoneNo == undefined)
         return false
     
     return true
 }
 
-const getUsersController = (req: Request, res: Response) => {
-    const users = getAllUsers()
+const getUsersController = async(req: Request, res: Response) => {
+    const users = await getAllUsers()
     res.status(200).json({Message:"Success", Data:users})
 }
 
 const getUserWithIDController = async(req: Request, res: Response) => {
 
-    if(validateNumber(req.params.id) == false)
-        res.status(400).json({Message: "Bad parameters"})
-
-    const user = await getUserByID(parseInt(req.params.id))
+    const user = await getUserByID(req.params.id)
 
     if(user === null)
         res.status(404).json({Message: "Failed, User not found"})
@@ -41,25 +39,23 @@ const getUserWithIDController = async(req: Request, res: Response) => {
 }
 
 const createUserController = async(req: Request, res: Response) => {
-    const {id, age, name, phoneNo, email} = req.body
+    const {age, name, phoneNo, email} = req.body
 
-    if(validateUser(id, age, name, phoneNo) == false)
+    if(validateUser(age, name, phoneNo) == false)
         res.status(400).json({Message: "Bad parameters"})
     else
     {
-        const userCreated: boolean = await createUser(id, age, name, phoneNo, email)
-        if(userCreated)
-            res.status(200).json({Message: 'User created'})
+        const user = await createUser(age, name, phoneNo, email)
+        if(user)
+            res.status(200).json({Message: 'User created', Data: user})
         else
-            res.status(400).json({Message: 'User ID already in use'})
+            res.status(400).json({Message: 'ERROR'})
     }
 }
 
 const deleteUserController = async(req: Request, res: Response) => {
-    if(validateNumber(req.params.id) == false)
-        res.status(400).json({Message: "Bad parameters"})
-
-    const flag = await deleteUser(parseInt(req.params.id))
+    
+    const flag = await deleteUser(new mongodb.ObjectId(req.params.id))
 
     if(flag == false)
         res.status(404).json({Message: "Failed, User not found"})

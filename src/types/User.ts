@@ -1,8 +1,6 @@
 import { ToDo } from "./ToDo"
 
 type User = {
-
-    id: number
     age: number
     name: string
     email: string

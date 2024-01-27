@@ -1,6 +1,7 @@
+import mongodb from "mongodb"
 import { Request, Response } from "express"
 import { getUserByID } from "../services/userService"
-import { getAllToDos, createToDo, getUserToDos } from "../services/toDoService"
+import { getAllToDos, createToDo } from "../services/toDoService"
 
 const getToDosController = async (req: Request, res: Response) => {
     const toDos = await getAllToDos()
@@ -9,12 +10,12 @@ const getToDosController = async (req: Request, res: Response) => {
 
 
 const getUserToDosController = async (req: Request, res: Response) => {
-    const user = await getUserByID(parseInt(req.params.id))
+    const user = await getUserByID(req.params.id)
 
     if(user === null)
         res.status(404).json({Message: "User Not Found"})
 
-    const userToDos = await getUserToDos(user!)
+    const userToDos = user!.toDos
     res.status(200).json({Message: "Success", Data: userToDos})
 }
 
@@ -36,8 +37,8 @@ const createToDoController = async (req: Request, res: Response) => {
         description: description
     }
 
-    await createToDo(user!, task)
-    res.status(200).json({Message: `ToDo added to User: ${user.id}`})
+    await createToDo(task)
+    res.status(200).json({Message: `ToDo added to User: ${user!._id}`})
 }
 
 

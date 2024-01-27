@@ -1,8 +1,8 @@
+import { ObjectId } from "mongodb"
+
 type ToDo = {
     
-    userID: number
-    
-    id?: number
+    userID: string
     
     tags?: string[]
     
@@ -40,7 +40,6 @@ const sortTasks = (task1: ToDo, task2: ToDo) => {
 
 function printTask(task: ToDo): void{
 
-    console.log(`ID: ${task.id}`)
     console.log(task.title)
     console.log(task.description)
 
